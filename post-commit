@@ -26,7 +26,7 @@ sw = DRbObject.new(nil, 'druby://127.0.0.1:7666')
 info_array = `svnlook info --revision #{rev} #{path}`.split(/\n/, 4)
 
 # colorize it
-message = "\0032#{info_array[0]}\003 * \0039rev\003 \002[#{rev}]\002#{info_array[3]}"
+message = "\0032#{info_array[0]}\003 * \0039rev\003 \002[#{rev}]\002 - #{info_array[3]}"
 
 sw.send_msg message
 
