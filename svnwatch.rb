@@ -1,37 +1,44 @@
-# needs some documentation
+# This file should be placed in the rbot plugins/ directroy. When you load rbot
+# it will scan the directory and load this plugin. DRb will automatically start up.
 require 'drb'
 
+# Configuration
+
+drb_port = 7666
+drb_host = 'localhost'
+irc_chan = '#pdx.rb'
+
 class SvnWatch < Plugin
+
+  def new(irc_chan)
+    @irc_chan = irc_chan
+  end
 
   def help(plugin, topic="")
     m.reply "nothing to do. svnwatch talks without your written consent. ;-)"
   end
   
   def privmsg(m)  
-  
-    unless(m.params)
-      m.reply "Incorrect usage. " + help(m.plugin)
-    end
-
+    m.reply "I don't actually have anything to say. I just sit and wait for SVN to call me."    
   end
 
   # Sends a message to the channel defined. This will allow 
   # you to use the DRb instance to call the send_msg(str)  
   # method, which will output to the desired channel
   def send_msg(str)
-    @bot.say "#pdx.rb",  str
+    @bot.say @irc_chan,  str
   end  
   
 end
 
 # register with rbot
-@svnwatch = SvnWatch.new
+@svnwatch = SvnWatch.new(irc_chan)
 @svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
 Thread.new {
     # start the DRb instance
-    DRb.start_service('druby://localhost:7666', @svnwatch)
+    DRb.start_service('druby://#{drb_host}:#{drb_port}', @svnwatch)
     DRb.thread.join
 }
 
