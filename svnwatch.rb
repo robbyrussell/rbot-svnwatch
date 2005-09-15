@@ -4,8 +4,8 @@ require 'drb'
 
 # Configuration
 
-drb_port = 7666
-drb_host = 'localhost'
+@drb_port = '7666'
+@drb_host = 'localhost'
 
 class SvnWatch < Plugin
 
@@ -33,7 +33,7 @@ end
 # start DRb in a new thread so it doesn't hang up the bot
 Thread.new {
     # start the DRb instance
-    DRb.start_service('druby://#{drb_host}:#{drb_port}', @svnwatch)
+    DRb.start_service("druby://#{@drb_host}:#{@drb_port}")
     DRb.thread.join
 }
 
