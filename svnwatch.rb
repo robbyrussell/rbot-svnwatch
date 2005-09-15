@@ -36,9 +36,10 @@ end
 
 # start DRb in a new thread so it doesn't hang up the bot
 Thread.new {
-    # start the DRb instance
-    DRb.start_service("druby://#{@drb_host}:#{@drb_port}", @svnwatch)
-    DRb.thread.join
+  # start the DRb instance
+  DRb.start_service("druby://#{@drb_host}:#{@drb_port}", @svnwatch)
+  DRb.thread.join
 }
+
 
 
