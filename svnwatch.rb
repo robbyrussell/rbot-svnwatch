@@ -40,6 +40,3 @@ Thread.new {
   DRb.start_service("druby://#{@drb_host}:#{@drb_port}", @svnwatch)
   DRb.thread.join
 }
-
-
-
