@@ -6,13 +6,8 @@ require 'drb'
 
 drb_port = 7666
 drb_host = 'localhost'
-irc_chan = '#pdx.rb'
 
 class SvnWatch < Plugin
-
-  def new(irc_chan)
-    @irc_chan = irc_chan
-  end
 
   def help(plugin, topic="")
     m.reply "nothing to do. svnwatch talks without your written consent. ;-)"
@@ -26,13 +21,13 @@ class SvnWatch < Plugin
   # you to use the DRb instance to call the send_msg(str)  
   # method, which will output to the desired channel
   def send_msg(str)
-    @bot.say @irc_chan,  str
+    @bot.say "#pdx.rb",  str
   end  
   
 end
 
 # register with rbot
-@svnwatch = SvnWatch.new(irc_chan)
+@svnwatch = SvnWatch.new
 @svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
