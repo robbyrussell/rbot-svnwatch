@@ -28,7 +28,7 @@ end
 
 # register with rbot
 svnwatch = SvnWatch.new
-svnwatch = "#pdx.rb"
+svnwatc[:channel] = "#pdx.rb"
 svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
