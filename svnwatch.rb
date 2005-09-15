@@ -24,12 +24,16 @@ class SvnWatch < Plugin
   
   private
   def start_up
-    
+    sd = svndrb.new    
     # start the DRb instance
-    DRb.start_service('druby://localhost:7666', self)
+    DRb.start_service('druby://localhost:7666', sd)
     DRb.thread.join
   end
     
+end
+
+class svndrb < SvnWatch
+
 end
 
 # register with rbot
