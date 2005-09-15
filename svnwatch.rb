@@ -1,4 +1,4 @@
-# test
+# needs some documentation
 require 'drb'
 
 class SvnWatch < Plugin
