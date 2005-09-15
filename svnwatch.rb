@@ -2,10 +2,8 @@ require 'drb'
 
 class SvnWatch < Plugin
 
-  attr_writer :channel
-  
   def help(plugin, topic="")
-    m.reply "svnwatch start (starts the drb instance)"
+    m.reply "nothing to do. svnwatch talks without your written consent. ;-)"
   end
   
   def privmsg(m)  
@@ -14,21 +12,19 @@ class SvnWatch < Plugin
       m.reply "Incorrect usage. " + help(m.plugin)
     end
 
-    if m.params == "start"
-      start_up  
-    end
-
   end
 
-  def post(str)
-    @bot.say @channel,  str
+  # Sends a message to the channel defined. This will allow 
+  # you to use the DRb instance to call the send_msg(str)  
+  # method, which will output to the desired channel
+  def send_msg(str)
+    @bot.say "#pdx.rb",  str
   end  
   
 end
 
 # register with rbot
 svnwatch = SvnWatch.new
-svnwatch[:channel] = "#pdx.rb"
 svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
