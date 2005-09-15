@@ -24,13 +24,13 @@ class SvnWatch < Plugin
 end
 
 # register with rbot
-svnwatch = SvnWatch.new
-svnwatch.register("svnwatch")
+@svnwatch = SvnWatch.new
+@svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
 Thread.new {
     # start the DRb instance
-    DRb.start_service('druby://localhost:7666', svnwatch)
+    DRb.start_service('druby://localhost:7666', @svnwatch)
     DRb.thread.join
 }
 
