@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+# Okay.  So we get two args from svn.
+#
+# [1] - repo path
+# [2] - revision number
+#
+# We then use this information to gather relevant data about the commit
+# and do with it as we please.
+
+path = ARGV[0]
+rev = ARGV[1]
+
+puts `svnlook info --revision #{rev} #{path}`
