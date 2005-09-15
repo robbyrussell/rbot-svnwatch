@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# x
+# xy
 require 'drb'
 
 # Okay.  So we get two args from svn.
