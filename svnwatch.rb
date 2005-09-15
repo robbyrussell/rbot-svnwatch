@@ -30,7 +30,7 @@ svnwatch.register("svnwatch")
 # start DRb in a new thread so it doesn't hang up the bot
 Thread.new {
     # start the DRb instance
-    DRb.start_service('druby://localhost:7666', self.class.new)
+    DRb.start_service('druby://localhost:7666', svnwatch)
     DRb.thread.join
 }
 
