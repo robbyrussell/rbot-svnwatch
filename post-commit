@@ -11,4 +11,9 @@
 path = ARGV[0]
 rev = ARGV[1]
 
+if (path.nil? || rev.nil?)
+  puts "Usage: post-commit <repo path> <rev number>"
+  exit
+end
+
 puts `svnlook info --revision #{rev} #{path}`
