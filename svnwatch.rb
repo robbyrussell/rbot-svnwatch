@@ -4,8 +4,8 @@ require 'drb'
 
 # Configuration
 
-@drb_port = '7666'
-@drb_host = 'localhost'
+@drb_port = '7666'	# 7666
+@drb_host = 'localhost' # localhost, don't set to remote ip unless you know what you are doing
 
 class SvnWatch < Plugin
 
