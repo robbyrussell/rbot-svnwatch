@@ -24,10 +24,14 @@ sw = DRbObject.new(nil, 'druby://127.0.0.1:7666')
 
 info_array = `svnlook info --revision #{rev} #{path}`.split(/\n/, 4)
 
-changed = `svnlook changed -r #{rev} #{path}`.strip
+# dumb idea, it would wrap too many lines if multiple files...
+#changed = `svnlook changed -r #{rev} #{path}`.strip
+
+# guess what the repository name is
+repos = path.split(/\//).reverse[0]
 
 # colorize it. we can make this look pretty later
-message = "\0032#{info_array[0]}\003 * \0039rev\003 \002[#{rev}]\002 \0037#{changed}\003 #{info_array[3]}"
+message = "\0032#{info_array[0]}\003 * \0039#{repos}\003 \002[#{rev}]\002 - #{info_array[3]}"
 
 sw.send_msg message
 
