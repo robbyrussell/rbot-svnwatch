@@ -2,13 +2,13 @@ require 'drb'
 
 class SvnWatch < Plugin
 
-  def help(plugin)
+  def help(plugin, topic="")
     m.reply "svnwatch start (starts the drb instance)"
   end
   
   def privmsg(m)  
   
-  unless(m.params)
+    unless(m.params)
       m.reply "Incorrect usage. " + help(m.plugin)
     end
 
@@ -24,16 +24,11 @@ class SvnWatch < Plugin
   
   private
   def start_up
-    sd = svndrb.new    
     # start the DRb instance
-    DRb.start_service('druby://localhost:7666', sd)
+    DRb.start_service('druby://localhost:7666', self)
     DRb.thread.join
   end
     
-end
-
-class svndrb < SvnWatch
-
 end
 
 # register with rbot
