@@ -2,9 +2,7 @@ require 'drb'
 
 class SvnWatch < Plugin
 
-  def new(channel="#pdx.rb")
-    @channel = channel
-  end
+  attr_writer :channel
   
   def help(plugin, topic="")
     m.reply "svnwatch start (starts the drb instance)"
@@ -30,6 +28,7 @@ end
 
 # register with rbot
 svnwatch = SvnWatch.new
+svnwatch = "#pdx.rb"
 svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
