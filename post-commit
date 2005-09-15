@@ -16,4 +16,10 @@ if (path.nil? || rev.nil?)
   exit
 end
 
-puts `svnlook info --revision #{rev} #{path}`
+info = `svnlook info --revision #{rev} #{path}`
+
+info_array = info.strip.split(/\n/, 4)
+
+puts "Committer: #{info_array[0]}"
+puts "When: #{info_array[1]}"
+puts "Log: #{info_array[3]}"
