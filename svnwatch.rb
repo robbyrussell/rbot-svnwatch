@@ -37,7 +37,8 @@ class SvnWatch < Plugin
     def send_msg(str)
       @bot.say @channel,  str
     end  
-  
+
+    # yes this is really ugly.. we'll clean it up!  
     def build_msg(info)
       author = "\00303" + info[:author] + "\017"
       repository = "\00310"  + info[:repository] + "\017"
