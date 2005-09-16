@@ -8,8 +8,9 @@
 require 'drb'
 
 # Configuration
-@drb_port = '7666'	# 7666
-@drb_host = 'localhost' # localhost, don't set to remote ip unless you know what you are doing
+@conf[:port] = '7666'	   # 7666
+@conf[:host] = 'localhost' # localhost, don't set to remote ip unless you know what you are doing
+@conf[:chan] = '#pdx.rb'
 
 class SvnWatch < Plugin
 
@@ -25,7 +26,7 @@ class SvnWatch < Plugin
   # you to use the DRb instance to call the send_msg(str)  
   # method, which will output to the desired channel
   def send_msg(str)
-    @bot.say "#pdx.rb",  str
+    @bot.say @conf[:chan],  str
   end  
   
 end
@@ -37,6 +38,6 @@ end
 # start DRb in a new thread so it doesn't hang up the bot
 Thread.new {
   # start the DRb instance
-  DRb.start_service("druby://#{@drb_host}:#{@drb_port}", @svnwatch)
+  DRb.start_service("druby://#{@conf[:host]}:#{@conf[:port]}", @svnwatch)
   DRb.thread.join
 }
