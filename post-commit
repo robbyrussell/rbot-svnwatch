@@ -23,7 +23,7 @@ if (path.nil? || rev.nil?)
 end
 
 DRb.start_service
-sw = DRbObject.new(nil, 'druby://127.0.0.1:7666')
+bot = DRbObject.new(nil, 'druby://127.0.0.1:7666')
 
 # The array contains this data:
 # [0]: committer
@@ -38,10 +38,10 @@ info_array = `svnlook info --revision #{rev} #{path}`.strip.split(/\n/, 4)
 # guess what the repository name is
 repos = path.split(/\//).last
 
-msg = { :author     => info_array[0],
-        :revision   => rev,
-        :repository => repos,
-        :log        => info_array[3].gsub(/\n/, ' ')
-      }
+commit_info = { :author     => info_array[0],
+                :revision   => rev,
+                :repository => repos,
+                :log        => info_array[3].gsub(/\n/, ' ')
+              }
 
-sw.send_msg msg
+bot.svn_commit commit_info
