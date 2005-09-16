@@ -14,13 +14,15 @@ require 'drb'
 # We then use this information to gather relevant data about the commit
 # and do with it as we please.
 
-path = File.expand_path(ARGV[0])
+path = ARGV[0]
 rev = ARGV[1]
 
 if (path.nil? || rev.nil?)
   puts "Usage: post-commit <repo path> <rev number>"
   exit
 end
+
+path = File.expand_path(path)
 
 DRb.start_service
 bot = DRbObject.new(nil, 'druby://127.0.0.1:7666')
