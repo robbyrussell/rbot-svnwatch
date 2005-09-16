@@ -43,7 +43,7 @@ class SvnWatch < Plugin
       repository = "\00310" + info[:repository] + "\017"
       revision =  "\002" + "[" + info[:revision] + ":/]" + "\017"
       note =  "\00315" + info[:log] +  "\003"
-      message = "#{author} * #{revision} #{repos} - #{note}"
+      message = "#{author} * #{revision} #{repository} - #{note}"
       return message
     end
     
