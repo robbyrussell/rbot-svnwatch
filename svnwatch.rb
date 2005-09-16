@@ -7,12 +7,12 @@
 
 require 'drb'
 
-# Configuration
-@conf = Hash.new
-
-@conf[:port] = '7666'	   # 7666
-@conf[:host] = 'localhost' # localhost, don't set to remote ip unless you know what you are doing
-@conf[:chan] = '#pdx.rb'
+# Configuration Options
+@conf = { 
+  :port => '7666',       # 7666
+  :host => 'localhost',  # localhost, don't set to remote ip unless you know what you are doing
+  :chan => '#pdx.rb'     # IRC channel that you want rbot to send notices to
+}
 
 class SvnWatch < Plugin
 
@@ -25,7 +25,7 @@ class SvnWatch < Plugin
   def privmsg(m)  
     m.reply "I don't actually have anything to say. I just sit and wait for SVN to call me."    
   end
-
+  
   # Sends a message to the channel defined. This will allow 
   # you to use the DRb instance to call the send_msg(str)  
   # method, which will output to the desired channel
@@ -46,3 +46,5 @@ Thread.new {
   DRb.start_service("druby://#{@conf[:host]}:#{@conf[:port]}", @svnwatch)
   DRb.thread.join
 }
+
+# that's all folks!
