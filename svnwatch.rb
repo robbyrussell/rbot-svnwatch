@@ -6,7 +6,6 @@
 # it will scan the directory and load this plugin. DRb will automatically start up.
 
 require 'drb'
-require 'rbot/formatting'
 
 # Configuration Options
 @conf = { 
@@ -40,10 +39,10 @@ class SvnWatch < Plugin
     end  
   
     def build_msg(info)
-      author = Irc.Formatting.color(:green) + info[:author] + Irc::Formatting.reset
-      repository = Irc.Formatting.color(:cyan) + info[:repository] + Irc::Formatting.reset
-      revision =  Irc.Formatting.bold + "[" + info[:revision] + ":/]" + Irc::Formatting.reset
-      note =  Irc.Formatting.color(:yellow) + info[:log] +  Irc::Formatting.reset
+      author = "\00303" + info[:author] + "\017"
+      repository = "\00310" + info[:repository] + "\017"
+      revision =  "\002" + "[" + info[:revision] + ":/]" + "\017"
+      note =  "\00315" + info[:log] +  "\003"
       message = "#{author} * #{revision} #{repos} - #{note}"
       return message
     end
