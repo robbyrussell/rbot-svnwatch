@@ -43,7 +43,7 @@ class SvnWatch < Plugin
       author = Irc.Formatting.color(:green) + info[:author] + Irc::Formatting.reset
       repository = Irc.Formatting.color(:cyan) + info[:repository] + Irc::Formatting.reset
       revision =  Irc.Formatting.bold + "[" + info[:revision] + ":/]" + Irc::Formatting.reset
-      note =  Irc.Formatting.color(:yellow) info[:log] +  Irc::Formatting.reset
+      note =  Irc.Formatting.color(:yellow) + info[:log] +  Irc::Formatting.reset
       message = "#{author} * #{revision} #{repos} - #{note}"
       return message
     end
