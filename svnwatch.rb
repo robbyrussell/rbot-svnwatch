@@ -1,7 +1,7 @@
 #
 # svnwatch - a subversion plugin for rbot.
 # author(s): Robby Russell and Ben Bleything of the PDX.rb
-#
+# 
 # This file should be placed in the rbot plugins/ directroy. When you load rbot
 # it will scan the directory and load this plugin. DRb will automatically start up.
 
@@ -9,7 +9,7 @@ require 'drb'
 
 # Configuration Options
 @conf = { 
-  :port => '7666',       # 7666
+  :port => '7666',       # 7666 (you will need this to be the same in post-commit)
   :host => 'localhost',  # localhost, don't set to remote ip unless you know what you are doing
   :chan => '#pdx.rb'     # IRC channel that you want rbot to send notices to
 }
@@ -17,10 +17,6 @@ require 'drb'
 class SvnWatch < Plugin
 
   attr_writer :channel
-  
-  def help(plugin, topic="")
-    m.reply "nothing to do. svnwatch talks without your written consent. ;-)"
-  end
   
   def privmsg(m)  
     m.reply "I don't actually have anything to say. I just sit and wait for SVN to call me."    
