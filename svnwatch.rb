@@ -16,6 +16,10 @@ require 'drb'
 
 class SvnWatch < Plugin
 
+  def new(channel="#pdx.rb")
+    @channel = channel
+  end
+  
   def help(plugin, topic="")
     m.reply "nothing to do. svnwatch talks without your written consent. ;-)"
   end
@@ -28,13 +32,13 @@ class SvnWatch < Plugin
   # you to use the DRb instance to call the send_msg(str)  
   # method, which will output to the desired channel
   def send_msg(str)
-    @bot.say @conf[:chan],  str
+    @bot.say @channel,  str
   end  
   
 end
 
 # register with rbot
-@svnwatch = SvnWatch.new
+@svnwatch = SvnWatch.new(@conf[:chan])
 @svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
