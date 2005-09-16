@@ -6,6 +6,7 @@
 # it will scan the directory and load this plugin. DRb will automatically start up.
 
 require 'drb'
+require 'rbot/formatting'
 
 # Configuration Options
 @conf = { 
@@ -26,13 +27,27 @@ class SvnWatch < Plugin
     m.reply "I don't actually have anything to say. I just sit and wait for SVN to call me."    
   end
   
+  def svn_commit(info)
+    send_msg(build_msg(info))
+  end
+  
   # Sends a message to the channel defined. This will allow 
   # you to use the DRb instance to call the send_msg(str)  
   # method, which will output to the desired channel
-  def send_msg(str)
-    @bot.say @channel,  str
-  end  
+  private
+    def send_msg(str)
+      @bot.say @channel,  str
+    end  
   
+    def build_msg(info)
+      author = Irc.Formatting.color(:green) + info[:author] + Irc::Formatting.reset
+      repository = Irc.Formatting.color(:cyan) + info[:repository] + Irc::Formatting.reset
+      revision =  Irc.Formatting.bold + "[" + info[:revision] + ":/]" + Irc::Formatting.reset
+      note =  Irc.Formatting.color(:yellow) info[:log] +  Irc::Formatting.reset
+      message = "#{author} * #{revision} #{repos} - #{note}"
+      return message
+    end
+    
 end
 
 # register with rbot
