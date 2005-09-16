@@ -8,6 +8,8 @@
 require 'drb'
 
 # Configuration
+@conf = Hash.new
+
 @conf[:port] = '7666'	   # 7666
 @conf[:host] = 'localhost' # localhost, don't set to remote ip unless you know what you are doing
 @conf[:chan] = '#pdx.rb'
