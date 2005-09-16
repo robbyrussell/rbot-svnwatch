@@ -40,10 +40,10 @@ class SvnWatch < Plugin
   
     def build_msg(info)
       author = "\00303" + info[:author] + "\017"
-      repository = "\00310" + "[" + info[:repository] + ":/]" + "\017"
+      repository = "\00310"  + info[:repository] + "\017"
       revision =  "\002" + "" + info[:revision] + "" + "\017"
       note =  "\00315" + info[:log] +  "\003"
-      message = "svn.commit( #{repository}, { :author => '#{author}', :rev => #{revision}, :log => '#{note}' } )"
+      message = "svn.commit( #{repository}, { \00306:author\017 \002=>\017 '#{author}', \00306:rev\017 \002=>\017 #{revision}, \00306:log\017 \002=>\017 '#{note}' } )"
       return message
     end
     
