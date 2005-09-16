@@ -43,7 +43,7 @@ class SvnWatch < Plugin
       repository = "\00310"  + info[:repository] + "\017"
       revision =  "\002" + "" + info[:revision] + "" + "\017"
       note =  "\00303" + info[:log] +  "\017"
-      message = "\00306svn\017\00300.commit\017( \00302#{repository}\017, { \00306:author\017 \002=>\017 '#{author}', \00306:rev\017 \002=>\017 #{revision}, \00306:log\017 \002=>\017 '#{note}' } )"
+      message = "\00313svn\017\00300.commit\017( \00302#{repository}\017, { \00306:author\017 \002=>\017 '#{author}', \00306:rev\017 \002=>\017 #{revision}, \00306:log\017 \002=>\017 '#{note}' } )"
       return message
     end
     
