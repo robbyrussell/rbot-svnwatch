@@ -16,9 +16,7 @@ require 'drb'
 
 class SvnWatch < Plugin
 
-  def new(channel="#pdx.rb")
-    @channel = channel
-  end
+  attr_writer :channel
   
   def help(plugin, topic="")
     m.reply "nothing to do. svnwatch talks without your written consent. ;-)"
@@ -38,7 +36,8 @@ class SvnWatch < Plugin
 end
 
 # register with rbot
-@svnwatch = SvnWatch.new(@conf[:chan])
+@svnwatch = SvnWatch.new
+@svnwatch.channel = @conf[:chan]
 @svnwatch.register("svnwatch")
 
 # start DRb in a new thread so it doesn't hang up the bot
