@@ -6,6 +6,13 @@
 
 require 'drb'
 
+# Configuration Options
+@conf = { 
+  :port => '7666',       # 7666 (you will need this to be the same in post-commit)
+  :host => 'localhost'  # localhost, don't set to remote ip unless you know what you are doing
+}
+
+
 # Okay.  So we get two args from svn.
 #
 # [1] - repo path
@@ -25,7 +32,7 @@ end
 path = File.expand_path(path)
 
 DRb.start_service
-bot = DRbObject.new(nil, 'druby://127.0.0.1:7666')
+bot = DRbObject.new(nil, "druby://#{@conf[:host]}:#{@conf[:port]}")
 
 # The array contains this data:
 # [0]: committer
