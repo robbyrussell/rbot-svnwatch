@@ -1,13 +1,17 @@
 #!/usr/bin/env ruby
+#
 # post-commit - a hook to talk to the svnwatch rbot plugin
-# author(s): Robby Russell and Ben Bleything of the PDX.rb
 #
 # This file should be placed in the repository's hooks directory
+#
+# Copyright (c) 2005, Ben Bleything and Robby Russell
+# Released under the terms of the MIT License
+#
 
 require 'drb'
 
 # Configuration Options
-@conf = { 
+@conf = {
   :port => '7666',       # 7666 (you will need this to be the same in post-commit)
   :host => 'localhost'  # localhost, don't set to remote ip unless you know what you are doing
 }
