@@ -1,0 +1,17 @@
+README
+
+These tools were built back in 2005 for the PDX.rb IRC channel so that our
+bot could post messages in #pdxruby each time someone would commit to one
+of our Subversion repositories.
+
+As an experiment, we decided to use Drb as the protocal for sending commit
+meesages from Subversion to our IRC channel.
+
+Usage
+
+The post-commit file should be placed in your Subversion repository's hooks
+directory.
+
+The svnwatch.rb file should be placed in the rbot plugins/ directroy. When
+you load rbot it will scan the directory and load this plugin. DRb will
+automatically start up.
